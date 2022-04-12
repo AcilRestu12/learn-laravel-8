@@ -1,0 +1,5 @@
+Pt 2 :
+
+- Valet ~> Berfungsi agar konfigurasi terhadap local server menjadi lebih mudah.
+
+
