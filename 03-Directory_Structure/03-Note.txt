@@ -1,11 +1,3 @@
-Pt 2 :
-
-- Valet ~> Berfungsi agar konfigurasi terhadap local server menjadi lebih mudah.
-
-
-
-Pt 3 :
-
 - Folder app 			→ Berisi kode inti dari aplikasinya.
 - Folder app/Models 		→ Berisi file-file model dari aplikasinya.
 - Folder resources/views 	→ Berisi file-file view dari aplikasinya.
@@ -17,6 +9,5 @@ Pt 3 :
 
 - Mengirim data dapat dilakukan dengan cara menuliskan data di parameter route.
 - Untuk menggunakan data yg dikirimkan melalui parameter, dapat dipanggil langsung dengan memanggil nama variabelnya.
-
 
 
