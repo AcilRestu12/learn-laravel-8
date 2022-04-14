@@ -37,3 +37,14 @@ Pt 5 :
 - <array collect()>->firstWhere(<nilai suatu data di array collect()>, <nilai yg ingin dicari>);
 
 
+
+Pt 6 :
+
+- php artisan migrate 		~> Berfungsi untuk membuat schema / struktur dari tabelnya
+- php artisan migrate:rollback 	~> Berfungsi untuk menghapus schema yg telah dibuat.
+- php artisan migrate:fresh 	~> Berfungsi untuk melakukan rollback lalu migrate sekaligus. Biasanya untuk mengupdate schema / sturktur dari suatu tabel.
+
+
+
+
+
