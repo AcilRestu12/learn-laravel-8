@@ -1,0 +1,2 @@
+- <array collect()>->firstWhere() ~> Berfungsi untuk mencari suatu data pertama di array collect dengan kondisi tertentu.
+- <array collect()>->firstWhere(<nilai suatu data di array collect()>, <nilai yg ingin dicari>);
