@@ -20,3 +20,13 @@ Pt 3 :
 
 
 
+Pt 4 :
+
+- Dalam file blade, tanda {{ }} memiliki fungsi yg sama seperti <?= ?>
+
+- Folder partials 	~> Berfungsi untuk menyimpan bagian-bagian spesifik yg dianggap komponen (nanti tinggal dibongkar pasang).
+
+- @dd() 		~> Berfungsi untuk melakukan dump and die dari suatu variabel.
+- @dd(<variabel>)
+
+
