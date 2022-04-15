@@ -46,5 +46,10 @@ Pt 6 :
 
 
 
+Pt 7 :
+
+- php artisan help <perintah artisan> ~> Berfungsi untuk menampilkan dokumentasi dari perintah artisan tersebut.
+
+
 
 

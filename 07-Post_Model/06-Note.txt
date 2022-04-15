@@ -1,3 +1,0 @@
-- php artisan migrate 		~> Berfungsi untuk membuat schema / struktur dari tabelnya
-- php artisan migrate:rollback 	~> Berfungsi untuk menghapus schema yg telah dibuat.
-- php artisan migrate:fresh 	~> Berfungsi untuk melakukan rollback lalu migrate sekaligus. Biasanya untuk mengupdate schema / sturktur dari suatu tabel.
