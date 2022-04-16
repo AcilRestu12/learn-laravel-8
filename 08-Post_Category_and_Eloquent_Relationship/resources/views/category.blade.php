@@ -4,10 +4,12 @@
 {{-- Mengisi halaman parent untuk section container --}}
 @section('container')       
 
-    {{-- Menerima data dari yg dikirim dari PostController.php --}}
-    {{-- Melakukan looping untuk setiap posts yg ada --}}
+    {{-- Menampilkan category yg dipilih --}}
+    <h1 class="mb-5">Post Categories : {{ $category }}</h1>
+
+    {{-- Melakukan looping untuk setiap posts yg diterima dari route web --}}
     @foreach ($posts as $post)
-        <article class="mb-5">
+        <article class="mb-4">
             <h2>
                 {{-- Mengirim slug dari suatu post melalui url --}}
                 <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>     

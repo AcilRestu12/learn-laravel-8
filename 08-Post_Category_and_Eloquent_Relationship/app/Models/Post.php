@@ -14,6 +14,16 @@ class Post extends Model
 
     // Variabel untuk menjaga attribute / field mana yg tidak dapat diisi dengan menggunakan Post:create(), sisanya dapat diisi
     protected $guarded = ['id'];
+
+
+    // Method untuk menghubungkan model Category
+    public function category() {
+
+        // Mereturn relasi dari model Post terhadap model Category
+        return $this->belongsTo(Category::class);
+
+    }
+
     
 }
 

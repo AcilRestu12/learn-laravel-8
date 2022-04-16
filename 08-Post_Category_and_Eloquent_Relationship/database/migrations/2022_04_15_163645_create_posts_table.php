@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');               // Untuk foreign key dari categories
             $table->string('title');                        // Untuk menyimpan judul dari post
             $table->string('slug')->unique();               // Untuk menyimpan slug dari post
             $table->text('excerpt');                        // Untuk menyimpan excerpt (sebagian kecil dari tulisan body)
