@@ -25,10 +25,10 @@ class Post extends Model
     }
 
     // Method untuk menghubungkan model User
-    public function user() {
+    public function author() {
 
         // Mereturn relasi dari model Post terhadap model User
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');        // Memanggil kolom user_id
 
     }
 

@@ -11,6 +11,9 @@ use App\Http\Controllers\PostController;
 // Memanggil model Category
 use App\Models\Category;
 
+// Memanggil model User
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,6 +72,18 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         "title" => $category->name,             // Mengirimkan data title ke file view dan disimpan sebagai variabel title
         'posts' => $category->posts,            // Mengirimkan semua data post yg memiliki category yg sama seperti di url dan disimpan sebagai variabel posts  
         'category' => $category->name           // Mengirimkan data nama dari category dan disimpan sebagai variabel category
+    ]); 
+    
+});
+
+
+// Route untuk halaman authors apabila url-nya /author/{user:username} dan mengirimkan satu instance penuh dari salah satu user
+Route::get('/authors/{author:username}', function(User $author) {
+
+    // Akan memanggil file view posts.blade.php di folder resources/views
+    return view('posts', [           
+        "title" => 'User Posts',                // Mengirimkan data title ke file view dan disimpan sebagai variabel title
+        'posts' => $author->posts               // Mengirimkan semua data post yg memiliki author / user yg sama seperti username dari user di url dan disimpan sebagai variabel posts  
     ]); 
     
 });

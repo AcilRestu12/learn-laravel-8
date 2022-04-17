@@ -1,0 +1,4 @@
+- Factory 	~> Berfungsi untuk membuat banyak data sekaligus secara otomatis yg nantinya dijadikan data di file seeder-nya.
+- Faker 	~> Berfungsi untuk generate / memunculkan data palsu.
+
+- php artisan make:factory <nama factory> ~> Berfungsi untuk membuat factory.

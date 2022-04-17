@@ -12,9 +12,10 @@ class PostController extends Controller
 {
     // Method untuk memanggil file view posts.blade.php
     public function index() {
-        return view('posts', [              // Akan memanggil file view home.blade.php di folder resources/views
-            "title" => 'Posts',             // Akan mengirimkan data title ke file view dan disimpan sebagai variabel title
-            'posts' => Post::all()          // Mengambil semua data post dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
+        return view('posts', [                      // Akan memanggil file view home.blade.php di folder resources/views
+            "title" => 'Posts',                     // Akan mengirimkan data title ke file view dan disimpan sebagai variabel title
+            // 'posts' => Post::all()               // Mengambil semua data post dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
+            'posts' => Post::latest()->get()        // Mengambil semua data post terbaru dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
         ]); 
     }
 
