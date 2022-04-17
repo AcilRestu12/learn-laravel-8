@@ -1,0 +1,3 @@
+- php artisan make:seeder <nama seeder> ~> Berfungsi untuk membuat seeder.
+
+

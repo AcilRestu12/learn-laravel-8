@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Method untuk menghubungkan model Post
+    public function posts() {
+
+        // Mereturn relasi dari model User terhadap model Post
+        return $this->hasMany(Post::class);     // Satu user bisa memiliki banyak post
+
+    }
+    
+    
 }

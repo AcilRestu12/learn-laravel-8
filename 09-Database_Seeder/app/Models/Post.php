@@ -24,6 +24,14 @@ class Post extends Model
 
     }
 
+    // Method untuk menghubungkan model User
+    public function user() {
+
+        // Mereturn relasi dari model Post terhadap model User
+        return $this->belongsTo(User::class);
+
+    }
+
     
 }
 

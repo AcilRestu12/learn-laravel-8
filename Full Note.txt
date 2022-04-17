@@ -52,4 +52,12 @@ Pt 7 :
 
 
 
+Pt 9 :
+
+- php artisan make:seeder <nama seeder> ~> Berfungsi untuk membuat seeder.
+
+
+
+
+
 

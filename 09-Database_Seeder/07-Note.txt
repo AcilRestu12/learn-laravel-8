@@ -1,1 +1,0 @@
-- php artisan help <perintah artisan> ~> Berfungsi untuk menampilkan dokumentasi dari perintah artisan tersebut.
