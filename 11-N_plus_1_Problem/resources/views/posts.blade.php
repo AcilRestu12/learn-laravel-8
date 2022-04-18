@@ -2,7 +2,9 @@
 @extends('layouts.main')
 
 {{-- Mengisi halaman parent untuk section container --}}
-@section('container')       
+@section('container')     
+
+    <h1 class="mb-5">{{ $title }}</h1>
 
     {{-- Menerima data dari yg dikirim dari PostController.php --}}
     {{-- Melakukan looping untuk setiap posts yg ada --}}
