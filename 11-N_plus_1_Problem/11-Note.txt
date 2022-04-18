@@ -1,0 +1,9 @@
+- N+1 Problem 		→ Terjadi ketika aplikasi mengambil data dari database, dimana di dalamnya melakukan looping terhadap datanya.
+- Lazy Loading 		→ Meload data apabila diperlukan.
+
+- Eager Loading 	→ Meload semua data di awal sehingga pada saat looping tidak perlu melakukan pemanggilan data ke database.
+- Eager loading dilakukan untuk menghindari N+1 Problem.
+- Pada laravel eager loading dapat dilakukan dengan method with().
+
+- Lazy Eager Loading 	→ Untuk melakukan eager loading setelah parent model sudah diambil
+- Pada laravel lazy eager loading dapat dilakukan dengan method load().

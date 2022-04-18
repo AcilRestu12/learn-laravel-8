@@ -35,7 +35,7 @@ Route::get('/', function () {
 
 // Route untuk halaman about
 Route::get('/about', function () {
-    return view('about', [          // Akan memanggil file view about.blade.php di folder resources/views
+    return view('about', [                          // Akan memanggil file view about.blade.php di folder resources/views
         "title" => 'About',                         // Akan mengirimkan data ke file view dan disimpan sebagai variabel title
         "name" => "Arieska Restu",                  // Akan mengirimkan data ke file view dan disimpan sebagai variabel name
         "email" => "arieskarestu214@gmail.com",     // Akan mengirimkan data ke file view dan disimpan sebagai variabel email
@@ -69,8 +69,10 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 
     // Akan memanggil file view posts.blade.php di folder resources/views
     return view('posts', [           
-        "title" => "Post by Category : $category->name",    // Mengirimkan data title ke file view dan disimpan sebagai variabel title
-        'posts' => $category->posts,                        // Mengirimkan semua data post yg memiliki category yg sama seperti di url dan disimpan sebagai variabel posts  
+        "title" => "Post by Category : $category->name",            // Mengirimkan data title ke file view dan disimpan sebagai variabel title
+
+        // Melakukan lazy eager loading untuk kolom category dan author di tabel posts
+        'posts' => $category->posts->load('category', 'author')     // Mengirimkan semua data post yg memiliki category yg sama seperti di url dan disimpan sebagai variabel posts  
     ]); 
     
 });
@@ -81,8 +83,10 @@ Route::get('/authors/{author:username}', function(User $author) {
 
     // Akan memanggil file view posts.blade.php di folder resources/views
     return view('posts', [           
-        "title" => "Post by Author : $author->name",    // Mengirimkan data title ke file view dan disimpan sebagai variabel title
-        'posts' => $author->posts                       // Mengirimkan semua data post yg memiliki author / user yg sama seperti username dari user di url dan disimpan sebagai variabel posts  
+        "title" => "Post by Author : $author->name",                    // Mengirimkan data title ke file view dan disimpan sebagai variabel title
+        
+        // Melakukan lazy eager loading untuk kolom category dan author di tabel posts
+        'posts' => $author->posts->load('category', 'author')            // Mengirimkan semua data post yg memiliki author / user yg sama seperti username dari user di url dan disimpan sebagai variabel posts  
     ]); 
     
 });
