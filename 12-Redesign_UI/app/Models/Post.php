@@ -15,6 +15,9 @@ class Post extends Model
     // Variabel untuk menjaga attribute / field mana yg tidak dapat diisi dengan menggunakan Post:create(), sisanya dapat diisi
     protected $guarded = ['id'];
 
+    // Variabel untuk menampung kolom yg ingin dilakukan eager loading
+    protected $with = ['category', 'author'];
+    
 
     // Method untuk menghubungkan model Category
     public function category() {

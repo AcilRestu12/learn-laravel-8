@@ -15,9 +15,10 @@ class PostController extends Controller
         return view('posts', [                      // Akan memanggil file view home.blade.php di folder resources/views
             "title" => 'All Posts',                 // Akan mengirimkan data title ke file view dan disimpan sebagai variabel title
             // 'posts' => Post::all()               // Mengambil semua data post dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
-
+            'active' => 'posts',                    // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
+            
             // Melakukan eager loading untuk kolom author dan category di tabel posts
-            'posts' => Post::with(['author', 'category'])->latest()->get()        // Mengambil semua data post terbaru dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
+            'posts' => Post::latest()->get()        // Mengambil semua data post terbaru dari model Post.php lalu mengirimkannya ke file view dan disimpan sebagai variabel posts
         ]); 
     }
 
@@ -26,6 +27,7 @@ class PostController extends Controller
     public function show(Post $post) {      // Menerima data instance Post yg dikirim lewat url
         return view('post', [
             'title' => 'Single Post',       // Akan mengirimkan data title ke file view dan disimpan sebagai variabel title
+            'active' => 'posts',            // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
             'post' => $post                 // Mengirimkan data post ke file view dan disimpan sebagai variabel post
         ]);
     }

@@ -28,7 +28,8 @@ use App\Models\User;
 // Route untuk halaman home
 Route::get('/', function () {
     return view('home', [           // Akan memanggil file view home.blade.php di folder resources/views
-        "title" => 'Home'           // Akan mengirimkan data ke file view dan disimpan sebagai variabel title
+        "title" => 'Home',          // Akan mengirimkan data ke file view dan disimpan sebagai variabel title
+        'active' => 'home'          // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
     ]); 
 });
 
@@ -37,6 +38,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', [                          // Akan memanggil file view about.blade.php di folder resources/views
         "title" => 'About',                         // Akan mengirimkan data ke file view dan disimpan sebagai variabel title
+        'active' => 'about',                        // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
         "name" => "Arieska Restu",                  // Akan mengirimkan data ke file view dan disimpan sebagai variabel name
         "email" => "arieskarestu214@gmail.com",     // Akan mengirimkan data ke file view dan disimpan sebagai variabel email
         "image" => 'ice.jpg'                        // Akan mengirimkan data ke file view dan disimpan sebagai variabel image
@@ -58,6 +60,7 @@ Route::get('/categories', function (Category $category) {
     // Akan memanggil file view category.blade.php di folder resources/views
     return view('categories', [           
         "title" => 'Post Categories',           // Mengirimkan data title ke file view dan disimpan sebagai variabel title
+        'active' => 'categories',               // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
         'categories' => Category::all()         // Mengirimkan semua data post dari setiap category dan disimpan sebagai variabel categories
     ]); 
     
@@ -70,6 +73,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     // Akan memanggil file view posts.blade.php di folder resources/views
     return view('posts', [           
         "title" => "Post by Category : $category->name",            // Mengirimkan data title ke file view dan disimpan sebagai variabel title
+        'active' => 'categories',                                   // Akan mengirimkan active ke file view dan disimpan sebagai variabel active
 
         // Melakukan lazy eager loading untuk kolom category dan author di tabel posts
         'posts' => $category->posts->load('category', 'author')     // Mengirimkan semua data post yg memiliki category yg sama seperti di url dan disimpan sebagai variabel posts  

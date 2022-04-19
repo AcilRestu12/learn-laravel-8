@@ -45,6 +45,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Web Programming',
             'slug' => 'web-programming'
         ]);
+
+        // Mengisi tabel categories untuk data Web Design
+        Category::create([
+            'name' => 'Web Design',
+            'slug' => 'web-design'
+        ]);
         
         // Mengisi tabel categories untuk data Personal
         Category::create([

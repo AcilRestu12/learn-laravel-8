@@ -23,9 +23,10 @@ class PostFactory extends Factory
 
             // Mengenerate data random untuk kolom excerpt
             'excerpt' => $this->faker->paragraph(),
-            
-            // Mengenerate data random untuk kolom body
-            'body' => $this->faker->paragraph(mt_rand(5,10)),
+        
+            // Mengenerate data random untuk kolom body dan dibungkus dengan tag <p>
+            // 'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5,10)) . '</p><p>'), 
+            'body' => collect($this->faker->paragraphs(mt_rand(5,10)))->map(fn($p) => "<p>$p</p>")->implode(''),
             
             // Mengenerate data random untuk kolom user_id
             'user_id' => mt_rand(1,3),
