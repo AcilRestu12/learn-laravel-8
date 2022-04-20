@@ -12,7 +12,7 @@
             @foreach ($categories as $category)
                 <div class="col-md-4">
                     {{-- Mengirim slug dari suatu category melalui url --}}
-                    <a href="/categories/{{ $category->slug }}">
+                    <a href="/posts?category={{ $category->slug }}">
                         <div class="card bg-dark text-white">
                             <img src="https://source.unsplash.com/500x500?{{ $category->name }}" alt="{{ $category->name }}" class="card-img">
                             <div class="card-img-overlay d-flex align-items-center p-0">

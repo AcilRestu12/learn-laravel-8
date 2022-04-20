@@ -35,6 +35,35 @@ class Post extends Model
 
     }
 
+
+    // Method untuk melakukan filter pada tabel
+    public function scopeFilter($query, array $filters) {
+
+        // Apabila ada sesuatu yg ditulis di kolom search
+        $query->when($filters['search'] ?? false, function($query, $search) {       // Melakukan pengecekan apakah ada search atau tidak di arry filters
+            // Mencari data posts yg judulnya / body-nya sesuai dengan search
+            return $query->where('title', 'like', '%' . $search . '%')
+                         ->orWhere('body', 'like', '%' . $search . '%');
+        }); 
+        
+        // Apabila melakukan search di suatu category 
+        $query->when($filters['category'] ?? false, function($query, $category) {
+            // Apabila query mempunyai relationship dengan category
+            return $query->whereHas('category', function($query) use($category) {   // use($category) -> Dilakukan agar dapat memakai argument $category di atas
+                $query->where('slug', $category);
+            }); 
+        });
+
+        // Apabila melakukan search di suatu author 
+        $query->when($filters['author'] ?? false, fn($query, $author) =>
+            $query->whereHas('author', fn($query) => 
+                // Apabila query mempunyai relationship dengan author
+                $query->where('username', $author)
+            )
+        );
+
+    }
+
     
 }
 
