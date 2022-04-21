@@ -5,14 +5,21 @@ use Illuminate\Support\Facades\Route;
 // Memanggil model Post.php
 use App\Models\Post;
 
-// Memanggil controller PostController.php
-use App\Http\Controllers\PostController;
-
 // Memanggil model Category
 use App\Models\Category;
 
 // Memanggil model User
 use App\Models\User;
+
+// Memanggil controller PostController.php
+use App\Http\Controllers\PostController;
+
+
+// Memanggil controller LoginController.php
+use App\Http\Controllers\LoginController;
+
+// Memanggil controller RegisterController.php
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,4 +108,10 @@ Route::get('/authors/{author:username}', function(User $author) {
 
 */
 
+
+// Memanggil method index di controller LoginController apabila url-nya /login
+Route::get('/login', [LoginController::class, 'index']);
+
+// Memanggil method index di controller RegisterController apabila url-nya /register
+Route::get('/register', [RegisterController::class, 'index']);
 

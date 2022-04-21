@@ -1,6 +1,0 @@
-- when() → Akan dijalankan apabila argument pertamanya bernilai true.
-
-- paginate() 		~> Berfungsi untuk melakukan pagination dan untuk setiap halaman akan ditampilkan sejumlah data yg telah ditentukan.
-- paginate(<jumlah data yg ingin ditampilkan setiap halaman>)
-
-- withQueryString() 	~> Berfungsi untuk membawa apapun yg telah ditulis di url
