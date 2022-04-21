@@ -115,3 +115,6 @@ Route::get('/login', [LoginController::class, 'index']);
 // Memanggil method index di controller RegisterController apabila url-nya /register
 Route::get('/register', [RegisterController::class, 'index']);
 
+// Memanggil method store di controller RegisterController apabila ada request yg dikirim ke /register dengan metode post
+Route::post('/register', [RegisterController::class, 'store']);
+

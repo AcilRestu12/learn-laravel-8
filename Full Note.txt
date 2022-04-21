@@ -92,3 +92,11 @@ Pt 13 :
 
 
 
+Pt 15 :
+
+- @csrf ~> Berfungsi untuk menghindari terjadinya request yg dikirim dari aplikasi lain, bukan dari aplikasi kita ([cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery))
+
+
+
+
+
