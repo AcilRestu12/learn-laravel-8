@@ -21,6 +21,10 @@ use App\Http\Controllers\LoginController;
 // Memanggil controller RegisterController.php
 use App\Http\Controllers\RegisterController;
 
+// Memanggil controller DashboardController.php
+use App\Http\Controllers\DashboardController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,12 +113,20 @@ Route::get('/authors/{author:username}', function(User $author) {
 */
 
 
-// Memanggil method index di controller LoginController apabila url-nya /login
-Route::get('/login', [LoginController::class, 'index']);
+// Memanggil method index di controller LoginController apabila url-nya /login dan belum melakukan authentication
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');    // name('login') -> Nama untuk route
+
+// Memanggil method authenticate di controller LoginController apabila ada request yg dikirim ke /login dengan metode post
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+// Memanggil method logout di controller LoginController apabila ada request yg dikirim ke /logout dengan metode post
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // Memanggil method index di controller RegisterController apabila url-nya /register
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 
 // Memanggil method store di controller RegisterController apabila ada request yg dikirim ke /register dengan metode post
 Route::post('/register', [RegisterController::class, 'store']);
 
+// Memanggil method index di controller DashboardController apabila url-nya /dashboard dan sudah melakukan authentication
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

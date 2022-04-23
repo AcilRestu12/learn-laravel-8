@@ -11,7 +11,9 @@ class Authenticate extends Middleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
-     */
+    */
+
+    // Apabila user yg belum melakukan authentication dan mengakses halaman yg harus melakukan authentication maka akan redirect url
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
