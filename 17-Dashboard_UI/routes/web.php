@@ -21,8 +21,8 @@ use App\Http\Controllers\LoginController;
 // Memanggil controller RegisterController.php
 use App\Http\Controllers\RegisterController;
 
-// Memanggil controller DashboardController.php
-use App\Http\Controllers\DashboardController;
+// Memanggil controller DashboardPostController.php
+use App\Http\Controllers\DashboardPostController;
 
 
 /*
@@ -128,5 +128,10 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 // Memanggil method store di controller RegisterController apabila ada request yg dikirim ke /register dengan metode post
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Memanggil method index di controller DashboardController apabila url-nya /dashboard dan sudah melakukan authentication
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+// Memanggil file view dashboard/index.blade.php apabila url-nya /dashboard dan sudah melakukan authentication
+Route::get('/dashboard', function() {
+    return  view('dashboard.index');
+})->middleware('auth');
+
+// Memanggil controller resource DashboardPostController.php apabila ada url-nya /dashboard/posts dan sudah melakukan authentication
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

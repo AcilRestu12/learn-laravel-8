@@ -61,7 +61,13 @@ class Post extends Model
                 $query->where('username', $author)
             )
         );
+    }
 
+
+    // Method untuk mengganti key dari tabel post
+    public function getRouteKeyName()
+    {
+        return 'slug';      // defaultnya id diganti jadi slug
     }
 
     
