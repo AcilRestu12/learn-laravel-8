@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 class DashboardPostController extends Controller
 {
@@ -32,7 +36,10 @@ class DashboardPostController extends Controller
     //  Method untuk menampilkan halaman tambah post
     public function create()
     {
-        //
+        // Memanggil file view dashboard/posts/create.blade.php
+        return view('dashboard.posts.create', [
+            'categories' => Category::all()     // Mengirimkan data categories
+        ]);
     }
 
 
@@ -46,7 +53,7 @@ class DashboardPostController extends Controller
     // Method untuk menjalankan fungsi tambah
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
 
@@ -108,4 +115,20 @@ class DashboardPostController extends Controller
     {
         //
     }
+
+
+    // Method untuk menangani ketika ada perminataan slug
+    public function checkSlug(Request $request) {
+
+        // Membuat slug dari title yg diambil dari request url
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        // Mereturn slug sebagai response dalam bentuk json
+        return response()->json(['slug' => $slug]);
+        
+    }
+
+
+    
+    
 }

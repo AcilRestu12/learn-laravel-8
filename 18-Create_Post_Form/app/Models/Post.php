@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// Memanggil library eloquent sluggable
+use Cviebrock\EloquentSluggable\Sluggable;
+
+
 class Post extends Model
 {
+    use Sluggable;
     use HasFactory;
+
 
     // Variabel untuk menyimpan attribute / field mana yg dapat diisi dengan menggunakan Post:create(), sisanya tidak dapat
     // protected $fillable = ['title', 'excerpt', 'body'];
@@ -68,6 +74,17 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';      // defaultnya id diganti jadi slug
+    }
+
+
+    // Method untuk membuat slug secara otomatis
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     

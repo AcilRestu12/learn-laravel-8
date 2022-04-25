@@ -10,8 +10,8 @@
             </li>
             <li class="nav-item">
                 {{-- Link untuk mengarahkan url ke route /dashboard/posts --}}
-                {{-- Apabila ada request url dashboard/posts maka tambahkan class active --}}
-                <a class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}" href="/dashboard/posts">
+                {{-- Apabila ada request url dashboard/posts/... maka tambahkan class active --}}
+                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
                     <span data-feather="file-text"></span>
                     My Posts
                 </a>

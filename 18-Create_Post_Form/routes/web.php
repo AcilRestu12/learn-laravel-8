@@ -133,5 +133,9 @@ Route::get('/dashboard', function() {
     return  view('dashboard.index');
 })->middleware('auth');
 
+// Memanggil method checkSlug di controller DashboadPostController apabila /dashboard/posts/checkSlug dan sudah melakukan authentication
+Route::get('/dashboard/posts/checkSlug', [DashboadPostController::class, 'checkSlug'])->middleware('auth');
+
 // Memanggil controller resource DashboardPostController.php apabila ada url-nya /dashboard/posts dan sudah melakukan authentication
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
