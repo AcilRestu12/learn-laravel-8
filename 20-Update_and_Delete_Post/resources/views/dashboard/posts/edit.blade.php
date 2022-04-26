@@ -6,19 +6,21 @@
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         {{-- Mengambil data user yg sudah login / authentication --}}
-        <h1 class="h2">Create New Posts</h1>
+        <h1 class="h2">Edit Posts</h1>
 
     </div>
 
     <div class="col-lg-8">
-        {{-- Form untuk menambah data post yg datanya akan dikirim ke route /dashboard/posts dengan metode post dan akan diterima oleh method store di controller DashboardPostControlller.php --}}
-        <form method="POST" action="/dashboard/posts" class="mb-5">
+        {{-- Form untuk menambah data post yg datanya akan dikirim ke route /dashboard/posts/{{ $post->slug } dengan metode post dan akan diterima oleh method store di controller DashboardPostControlller.php --}}
+        <form method="POST" action="/dashboard/posts/{{ $post->slug }}" class="mb-5">
+            {{-- Mengubah method dari form dari post menjadi put --}}
+            @method('put')
             {{-- Mengirimkan token csrf agar tidak dibajak --}}
             @csrf
             {{-- Input untuk title --}}
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title', $post->title) }}">
                 {{-- Apabila terjadi error untuk input title --}}
                 @error('title')
                     <div class="invalid-feedback">
@@ -29,7 +31,7 @@
             {{-- Input untuk slug --}}
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required autofocus value="{{ old('slug') }}">
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required autofocus value="{{ old('slug', $post->slug) }}">
                 {{-- Apabila terjadi error untuk input slug --}}
                 @error('slug')
                     <div class="invalid-feedback">
@@ -43,7 +45,7 @@
                 <select class="form-select" name="category_id">
                     @foreach ($categories as $category)
                         {{-- Apabila sudah memilih category sebelumnya --}}
-                        @if ( old('category_id') == $category->id )
+                        @if ( old('category_id', $post->category_id) == $category->id )
                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                         {{-- Apabila sebelumnya belum memilih category --}}
                         @else
@@ -59,11 +61,11 @@
                 @error('body')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
-                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+                <input id="body" type="hidden" name="body" value="{{ old('body', $post->body) }}">
                 <trix-editor input="body"></trix-editor>
             </div>
             {{-- Tombol submit --}}
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-primary">Update Post</button>
         </form>
     </div>
 

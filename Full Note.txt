@@ -105,6 +105,11 @@ Part 19 :
 
 
 
+Part 20 :
+
+- php artisan route:list ~> Berfungsi untuk melihat daftar dari seluruh route.
+
+
 
 
 
