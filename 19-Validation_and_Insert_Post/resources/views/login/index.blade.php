@@ -4,7 +4,7 @@
     
     <div class="row justify-content-center">
         <div class="col-md-4">
-            {{-- Menampilkan flash message ketika berhasil login --}}
+            {{-- Menampilkan flash message ketika berhasil register --}}
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}

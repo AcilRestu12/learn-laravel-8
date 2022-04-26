@@ -8,17 +8,24 @@
         <h1 class="h2">My Posts</h1>
     </div>
 
+    {{-- Menampilkan flash message ketika berhasil menambahkan data post --}}
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <div class="table-responsive col-lg-8">
         {{-- Tombol untuk menambah data post --}}
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
         <table class="table table-striped table-sm">
           <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Category</th>
-              <th scope="col">Action</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Action</th>
+                </tr>
           </thead>
           <tbody>
               @foreach ($posts as $post)
@@ -39,6 +46,4 @@
       </div>
 
 @endsection
-
-
 

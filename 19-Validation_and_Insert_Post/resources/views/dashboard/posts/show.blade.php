@@ -27,7 +27,6 @@
                     {!! $post->body !!}             {{-- {!! !!} ~> Berfungsi untuk menampilkan isi dari variabel dan apabila terdapat element html di dalamnya maka akan tetap dianggap sebagai element html --}}
                 </article>
 
-                <a href="/posts" class="d-block mt-5">Back to Posts</a>
             </div>
         </div>
     </div>

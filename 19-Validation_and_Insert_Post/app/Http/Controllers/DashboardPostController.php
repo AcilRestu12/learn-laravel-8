@@ -6,7 +6,9 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 
 class DashboardPostController extends Controller
@@ -50,10 +52,29 @@ class DashboardPostController extends Controller
      * @return \Illuminate\Http\Response
     */
 
-    // Method untuk menjalankan fungsi tambah
+    // Method untuk menjalankan fungsi tambah post
     public function store(Request $request)
     {
-        return $request;
+        // Melakukan validasi data untuk setiap data request
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        // Menambahkan data id user ke variabel validatedData dengan mengambil dari auth()
+        $validatedData['user_id'] = auth()->user()->id;
+
+        // Menambahkan data excerpt ke variabel validatedData dengan mengambil 200 kata dari body
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);        // strip_tags() ~> Berfungsi untuk menghilangkan tag-tag html
+        
+        // Memasukkan data post ke tabel post 
+        Post::create($validatedData);
+
+        // Mengirim flash message dan meredirect url ke halaman /dashboard/posts
+        return redirect('/dashboard/posts')->with('success', 'New post has been added!');
+        
     }
 
 

@@ -1,4 +1,4 @@
-{{-- Memanggil file view di views/dashboard/layouts/main.blade.php --}}
+ {{-- Memanggil file view di views/dashboard/layouts/main.blade.php --}}
 @extends('dashboard.layouts.main')
 
 
@@ -12,32 +12,54 @@
 
     <div class="col-lg-8">
         {{-- Form untuk menambah data post yg datanya akan dikirim ke route /dashboard/posts dengan metode post dan akan diterima oleh method store di controller DashboardPostControlller.php --}}
-        <form method="POST" action="/dashboard/posts">
+        <form method="POST" action="/dashboard/posts" class="mb-5">
             {{-- Mengirimkan token csrf agar tidak dibajak --}}
             @csrf
-            {{-- Input untuk judul --}}
+            {{-- Input untuk title --}}
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+                {{-- Apabila terjadi error untuk input title --}}
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             {{-- Input untuk slug --}}
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" class="form-control" id="slug" name="slug">
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required autofocus value="{{ old('slug') }}">
+                {{-- Apabila terjadi error untuk input slug --}}
+                @error('slug')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             {{-- Input untuk category --}}
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category_id">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        {{-- Apabila sudah memilih category sebelumnya --}}
+                        @if ( old('category_id') == $category->id )
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        {{-- Apabila sebelumnya belum memilih category --}}
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
             {{-- Input untuk body --}}
             <div class="mb-3">
                 <label for="body" class="form-label">Body</label>
-                <input id="body" type="hidden" name="body">
+                {{-- Apabila terjadi error untuk input body --}}
+                @error('body')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
             {{-- Tombpl submit --}}

@@ -98,5 +98,13 @@ Pt 15 :
 
 
 
+Part 19 :
+
+- strip_tags() ~> Berfungsi untuk menghilangkan tag-tag html.
+- strip_tags(<variabel string berisi tag html>);
+
+
+
+
 
 
