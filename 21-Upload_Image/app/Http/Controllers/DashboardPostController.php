@@ -55,13 +55,21 @@ class DashboardPostController extends Controller
     // Method untuk menjalankan fungsi tambah post
     public function store(Request $request)
     {
+        
         // Melakukan validasi data untuk setiap data request
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
+            'image' => 'image|file|max:5120',       // max size dengan satuan KB
             'body' => 'required'
         ]);
+
+        // Jika user memasukkan gambar
+        if ( $request->file('image') ) {
+            // Menambahkan data gambar ke variabel validatedData dengan mengambil nama gambar dan menyimpannya di folder post-images
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
         // Menambahkan data id user ke variabel validatedData dengan mengambil dari auth()
         $validatedData['user_id'] = auth()->user()->id;

@@ -23,22 +23,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Membuat 3 data di tabel user dengan menggunakan factory
-        User::factory(3)->create();
-
-        // // Mengisi tabel user untuk data pertama
-        // User::create([
-        //     'name' => 'Arieska Restu',
-        //     'email' => 'arieskarestu214@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
-
+        
+        // Mengisi tabel user untuk data pertama
+        User::create([
+            'name' => 'Arieska Restu',
+            'username' => 'AcilRestu12',
+            'email' => 'arieskarestu214@gmail.com',
+            'password' => bcrypt('12345')
+        ]);
+        
         // // Mengisi tabel user untuk data kedua
         // User::create([
         //     'name' => 'Evory Restu',
+        //     'username' => 'EvoryRest',
         //     'email' => 'evoryrestu321@gmail.com',
         //     'password' => bcrypt('54321')
         // ]);
+
+        // Membuat 3 data di tabel user dengan menggunakan factory
+        User::factory(3)->create();
         
         // Mengisi tabel categories untuk data Web Programming
         Category::create([

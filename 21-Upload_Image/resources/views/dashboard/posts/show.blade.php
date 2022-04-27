@@ -26,9 +26,17 @@
                     <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></span> Delete</button>
                 </form>
                 
-                {{-- Menampilkan gambar random dari unsplash --}}
-                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid mt-3">
-                
+                {{-- Apabila ada gambar di table post --}}
+                @if ( $post->image )
+                    <div style="max-height: 400px; overflow:hidden;">
+                        {{-- Mengambil gambar dari storage sesuai dengan nama file gambar di table post --}}
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid mt-3">
+                    </div>
+                @else
+                    {{-- Menampilkan gambar random dari unsplash --}}
+                    <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid mt-3">
+                @endif
+
                 {{-- Menampilkan body dari post yg ditampilkan --}}
                 <article class="my-3 fs-6">
                     {!! $post->body !!}             {{-- {!! !!} ~> Berfungsi untuk menampilkan isi dari variabel dan apabila terdapat element html di dalamnya maka akan tetap dianggap sebagai element html --}}

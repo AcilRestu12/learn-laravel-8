@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');                   // Untuk foreign key dari user
             $table->string('title');                        // Untuk menyimpan judul dari post
             $table->string('slug')->unique();               // Untuk menyimpan slug dari post
+            $table->string('image')->nullable();            // Untuk menyimpan nama file image     
             $table->text('excerpt');                        // Untuk menyimpan excerpt (sebagian kecil dari tulisan body)
             $table->text('body');                           // Untuk menyimpan body / isi dari post
             $table->timestamp('published_at')->nullable();  // Untuk menyimpan tgl kapan postingan dipublish

@@ -14,8 +14,16 @@
                 {{-- Menampilkan author / user dan kategori dari post yg ditampilkan --}}
                 <p>By. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none"> {{ $post->author->name }} </a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p>
                 
-                {{-- Menampilkan gambar random dari unsplash --}}
-                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid">
+                {{-- Apabila ada gambar di table post --}}
+                @if ( $post->image )
+                    <div style="max-height: 400px; overflow:hidden;">
+                        {{-- Mengambil gambar dari storage sesuai dengan nama file gambar di table post --}}
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid">
+                    </div>
+                @else
+                    {{-- Menampilkan gambar random dari unsplash --}}
+                    <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid">
+                @endif
                 
                 {{-- Menampilkan body dari post yg ditampilkan --}}
                 <article class="my-3 fs-6">

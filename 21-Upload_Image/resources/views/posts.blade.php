@@ -33,7 +33,16 @@
     {{-- Mengecek apakah ada posts atau tidak --}}
     @if  ( $posts->count() )
         <div class="card mb-3 text-center">
-            <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            {{-- Apabila ada gambar di table post --}}
+            @if ( $posts[0]->image )
+                <div style="max-height: 400px; overflow:hidden;">
+                    {{-- Mengambil gambar dari storage sesuai dengan nama file gambar di table post --}}
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->category->name }}" class="img-fluid">
+                </div>
+            @else
+                {{-- Menampilkan gambar random dari unsplash --}}
+                <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            @endif
             <div class="card-body">
             <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
             <p>
@@ -59,9 +68,15 @@
                                 <a href="/posts?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->name }}</a>
                             </div>
                             
-                            {{-- Menampilkan gambar random dari unsplash --}}
-                            <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}">
-
+                            {{-- Apabila ada gambar di table post --}}
+                            @if ( $post->image )
+                                {{-- Mengambil gambar dari storage sesuai dengan nama file gambar di table post --}}
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid">
+                            @else
+                                {{-- Menampilkan gambar random dari unsplash --}}
+                                <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}">
+                            @endif
+                            
                             <div class="card-body">
                                 {{-- Mengirim slug dari suatu post melalui url --}}
                                 <h5 class="card-title">{{ $post->title }}</h5>

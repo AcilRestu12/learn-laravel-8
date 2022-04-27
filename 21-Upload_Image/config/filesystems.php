@@ -13,6 +13,7 @@ return [
     |
     */
 
+    // Tempat untuk menyimpan file-file yg diupload
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     /*

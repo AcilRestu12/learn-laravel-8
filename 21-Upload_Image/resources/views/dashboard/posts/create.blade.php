@@ -12,7 +12,7 @@
 
     <div class="col-lg-8">
         {{-- Form untuk menambah data post yg datanya akan dikirim ke route /dashboard/posts dengan metode post dan akan diterima oleh method store di controller DashboardPostControlller.php --}}
-        <form method="POST" action="/dashboard/posts" class="mb-5">
+        <form method="POST" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">       {{-- enctype ~> Berfungsi agar dapat mengupload file --}}
             {{-- Mengirimkan token csrf agar tidak dibajak --}}
             @csrf
             {{-- Input untuk title --}}
@@ -51,6 +51,17 @@
                         @endif
                     @endforeach
                 </select>
+            </div>
+            {{-- Input untuk gambar --}}
+            <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                {{-- Apabila terjadi error untuk input image --}}
+                @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             {{-- Input untuk body --}}
             <div class="mb-3">
