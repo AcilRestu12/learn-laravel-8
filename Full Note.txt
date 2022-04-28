@@ -98,16 +98,23 @@ Pt 15 :
 
 
 
-Part 19 :
+Pt 19 :
 
 - strip_tags() ~> Berfungsi untuk menghilangkan tag-tag html.
 - strip_tags(<variabel string berisi tag html>);
 
 
 
-Part 20 :
+Pt 20 :
 
 - php artisan route:list ~> Berfungsi untuk melihat daftar dari seluruh route.
+
+
+
+Pt 23 : 
+
+- php artisan make middleware ~> Berfungsi untuk membuat middleware.
+
 
 
 

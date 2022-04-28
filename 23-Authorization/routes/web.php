@@ -24,6 +24,9 @@ use App\Http\Controllers\RegisterController;
 // Memanggil controller DashboardPostController.php
 use App\Http\Controllers\DashboardPostController;
 
+// Memanggil controller AdminCategoryController.php
+use App\Http\Controllers\AdminCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -134,8 +137,16 @@ Route::get('/dashboard', function() {
 })->middleware('auth');
 
 // Memanggil method checkSlug di controller DashboadPostController apabila /dashboard/posts/checkSlug dan sudah melakukan authentication
-Route::get('/dashboard/posts/checkSlug', [DashboadPostController::class, 'checkSlug'])->middleware('auth');
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 
-// Memanggil controller resource DashboardPostController.php apabila ada url-nya /dashboard/posts dan sudah melakukan authentication
+// Memanggil controller resource DashboardPostController.php apabila url-nya /dashboard/posts dan sudah melakukan authentication
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+// Memanggil controller resource AdminCategoryController.php apabila url-nya /dashboard/categories dan user yg login merupakan admin
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');       // Method show tidak akan bisa diakses
+
+// // Memanggil controller resource AdminCategoryController.php apabila url-nya /dashboard/categories
+// Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show');       // Method show tidak akan bisa diakses
+
+
 

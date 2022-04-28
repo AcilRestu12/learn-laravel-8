@@ -22,7 +22,7 @@ class DashboardPostController extends Controller
 
     //  Method untuk menampilkan semua data post berdasarkan user tertentu
     public function index()
-    {
+    {   
         // Memanggil file view dashboard/posts/index.blade.php dan mengirim data posts
         return view('dashboard.posts.index', [
             'posts' => Post::where('user_id', auth()->user()->id)->get()        // Mengambil data posts berdasarkan id user yang sudah login
