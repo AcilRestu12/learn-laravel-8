@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class DashboardPostController extends Controller
@@ -136,6 +137,7 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'image' => 'image|file|max:5120',       // max size dengan satuan KB
             'body' => 'required'
         ];
 
@@ -146,6 +148,19 @@ class DashboardPostController extends Controller
 
         // Melakukan validasi data untuk setiap data request agar sesuai dengan rules
         $validatedData = $request->validate($rules);
+
+        // Jika user memasukkan gambar baru
+        if ( $request->file('image') ) {
+
+            // Jika sebelumnya sudah ada gambar
+            if ( $request->oldImage ) {
+                // Mengahapus data image lama
+                Storage::delete($request->oldImage);        
+            }
+
+            // Menambahkan data gambar ke variabel validatedData dengan mengambil nama gambar dan menyimpannya di folder post-images
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
         // Menambahkan data id user ke variabel validatedData dengan mengambil dari auth()
         $validatedData['user_id'] = auth()->user()->id;
@@ -172,6 +187,12 @@ class DashboardPostController extends Controller
     // Method untuk menghapus data post
     public function destroy(Post $post)
     {
+        // Jika sebelumnya sudah ada gambar
+        if ( $post->image ) {
+            // Mengahapus data image
+            Storage::delete($post->image);        
+        }
+        
         // Menghapus data post berdasarkan id tertentu
         Post::destroy($post->id);
 

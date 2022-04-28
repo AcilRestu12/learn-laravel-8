@@ -55,7 +55,9 @@
             {{-- Input untuk gambar --}}
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
-                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                {{-- Image preview apabila ada perubahan untuk input gambar --}}
+                <img class="img-preview img-fluid mb-3 col-sm-5">
+                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">     {{-- Apabila ada perubahan untuk input gambar maka akan memanggil function preview Image --}}
                 {{-- Apabila terjadi error untuk input image --}}
                 @error('image')
                     <div class="invalid-feedback">
@@ -108,7 +110,29 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault()
         })
-        
+
+        // Function untuk menjalankan preview image
+        function previewImage() {
+            // Mengambil input image
+            const image = document.querySelector('#image');
+
+            // Mengambil image preview
+            const imgPreview = document.querySelector('#image');
+
+            // Mengubah display dari imgPreview menjadi block 
+            imgPreview.style.display = 'block'
+
+            // Mengambil url dari file input image
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                // Menambahkan attribute src dengan url dari input gambar
+                imgPreview.src = oFREvent.target.result;
+            }
+            
+        }
+
     </script>
 
 @endsection
